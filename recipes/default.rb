@@ -4,7 +4,7 @@ Erubis::Context.send(:include, Extensions::Templates)
 
 elasticsearch = "elasticsearch-#{node.elasticsearch142[:version]}"
 
-include_recipe "elasticsearch::curl"
+include_recipe "elasticsearch142::curl"
 include_recipe "ark"
 
 # Create user and group
@@ -17,7 +17,7 @@ end
 
 user node.elasticsearch142[:user] do
   comment "ElasticSearch User"
-  home    "#{node.elasticsearch[:dir]}/elasticsearch"
+  home    "#{node.elasticsearch142[:dir]}/elasticsearch"
   shell   "/bin/bash"
   uid     node.elasticsearch[:uid]
   gid     node.elasticsearch142[:user]
@@ -29,9 +29,9 @@ end
 # FIX: Work around the fact that Chef creates the directory even for `manage_home: false`
 bash "remove the elasticsearch user home" do
   user    'root'
-  code    "rm -rf  #{node.elasticsearch[:dir]}/elasticsearch"
-  not_if  { ::File.symlink?("#{node.elasticsearch[:dir]}/elasticsearch") }
-  only_if { ::File.directory?("#{node.elasticsearch[:dir]}/elasticsearch") }
+  code    "rm -rf  #{node.elasticsearch142[:dir]}/elasticsearch"
+  not_if  { ::File.symlink?("#{node.elasticsearch142[:dir]}/elasticsearch") }
+  only_if { ::File.directory?("#{node.elasticsearch142[:dir]}/elasticsearch") }
 end
 
 
@@ -64,20 +64,20 @@ end
 
 # Create service
 #
-template "/etc/init.d/elasticsearch" do
+template "/etc/init.d/elasticsearch142" do
   source "elasticsearch.init.erb"
   owner 'root' and mode 0755
 end
 
-service "elasticsearch" do
+service "elasticsearch142" do
   supports :status => true, :restart => true
   action [ :enable ]
 end
 
 # Download, extract, symlink the elasticsearch libraries and binaries
 #
-ark_prefix_root = node.elasticsearch[:dir] || node.ark[:prefix_root]
-ark_prefix_home = node.elasticsearch[:dir] || node.ark[:prefix_home]
+ark_prefix_root = node.elasticsearch142[:dir] || node.ark[:prefix_root]
+ark_prefix_home = node.elasticsearch142[:dir] || node.ark[:prefix_home]
 
 filename = node.elasticsearch[:filename] || "elasticsearch-#{node.elasticsearch142[:version]}.tar.gz"
 download_url = node.elasticsearch[:download_url] || [node.elasticsearch[:host],
@@ -97,8 +97,8 @@ ark "elasticsearch" do
   notifies :restart, 'service[elasticsearch]' unless node.elasticsearch[:skip_restart]
 
   not_if do
-    link   = "#{node.elasticsearch[:dir]}/elasticsearch"
-    target = "#{node.elasticsearch[:dir]}/elasticsearch-#{node.elasticsearch142[:version]}"
+    link   = "#{node.elasticsearch142[:dir]}/elasticsearch"
+    target = "#{node.elasticsearch142[:dir]}/elasticsearch-#{node.elasticsearch142[:version]}"
     binary = "#{target}/bin/elasticsearch"
 
     ::File.directory?(link) && ::File.symlink?(link) && ::File.readlink(link) == target && ::File.exists?(binary)

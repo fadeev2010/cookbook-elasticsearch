@@ -38,7 +38,7 @@ require 'berkshelf/vagrant' if Vagrant::VERSION < '1.1'
 distributions = {
   :precise64 => {
     :url      => 'http://files.vagrantup.com/precise64.box',
-    :run_list => %w| apt build-essential vim java monit elasticsearch elasticsearch::plugins elasticsearch::proxy elasticsearch::aws elasticsearch::data elasticsearch::monit |,
+    :run_list => %w| apt build-essential vim java monit elasticsearch elasticsearch142::plugins elasticsearch142::proxy elasticsearch142::aws elasticsearch142::data elasticsearch142::monit |,
     :ip       => '33.33.33.10',
     :primary  => true,
     :node     => {
@@ -71,7 +71,7 @@ distributions = {
   :centos6 => {
     # Note: Monit cookbook broken on CentOS
     :url      => 'https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-centos-6.3.box',
-    :run_list => %w| yum::epel build-essential vim java elasticsearch elasticsearch::proxy elasticsearch::data |,
+    :run_list => %w| yum::epel build-essential vim java elasticsearch elasticsearch142::proxy elasticsearch142::data |,
     :ip       => '33.33.33.11',
     :primary  => false,
     :node     => {
@@ -246,7 +246,7 @@ Vagrant::Config.run do |config|
         chef.log_level         = :debug
 
         chef.run_list = options[:run_list]
-        chef.run_list << 'elasticsearch::test' if ENV['TEST']
+        chef.run_list << 'elasticsearch142::test' if ENV['TEST']
         chef.json     = node_config.dup.deep_merge!(options[:node]).deep_merge!(custom_config)
       end
     end

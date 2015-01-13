@@ -11,27 +11,27 @@ unpacks and moves it to the directory you have specified in the node configurati
 
 It installs a service which enables you to start, stop, restart and check status of the _Elasticsearch_ process.
 
-If you include the `elasticsearch::monit` recipe, it will create a configuration file for _Monit_,
+If you include the `elasticsearch142::monit` recipe, it will create a configuration file for _Monit_,
 which will check whether _Elasticsearch_ is running, reachable by HTTP and the cluster is in the "green" state.
 (Assumed you have included a compatible ["monit" cookbook](http://community.opscode.com/cookbooks/monit)
 in your run list first.)
 
-If you include the `elasticsearch::aws` recipe, the
+If you include the `elasticsearch142::aws` recipe, the
 [AWS Cloud Plugin](http://github.com/elasticsearch/elasticsearch-cloud-aws) will be installed on the node,
 allowing you to use the _Amazon_ AWS-related features (node auto-discovery, etc).
 Set your AWS credentials either in the "elasticsearch/aws" data bag, or directly in the role/node configuration.
 Instead of using AWS access tokens, you can create the instance with a
 [IAM role](http://docs.aws.amazon.com/IAM/latest/UserGuide/role-usecase-ec2app.html).
 
-If you include the `elasticsearch::data` and `elasticsearch::ebs` recipes, an EBS volume will be automatically
+If you include the `elasticsearch142::data` and `elasticsearch142::ebs` recipes, an EBS volume will be automatically
 created, formatted and mounted so you can use it as a local gateway for _Elasticsearch_.
 When the EBS configuration contains a `snapshot_id` value, it will be created with data from the corresponding snapshot. See the `attributes/data` file for more information.
 
-If you include the `elasticsearch::proxy` recipe, it will configure the _Nginx_ server as
+If you include the `elasticsearch142::proxy` recipe, it will configure the _Nginx_ server as
 a reverse proxy for _Elasticsearch_, so you may access it remotely with HTTP authentication.
 Set the credentials either in a "elasticsearch/users" data bag, or directly in the role/node configuration.
 
-If you include the `elasticsearch::search_discovery` recipe, it will configure the cluster to use Chef search
+If you include the `elasticsearch142::search_discovery` recipe, it will configure the cluster to use Chef search
 for discovering Elasticsearch nodes. This allows the cluster to operate without multicast, without AWS, and
 without having to manually manage nodes.
 
@@ -139,7 +139,7 @@ Then, upload the cookbook to the _Chef_ server:
     knife cookbook upload elasticsearch
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To enable the _Amazon_ AWS related features, include the `elasticsearch::aws` recipe.
+To enable the _Amazon_ AWS related features, include the `elasticsearch142::aws` recipe.
 You will need to configure the AWS credentials.
 
 You may do that in the node configuration (with `knife node edit MYNODE` or in the _Chef Server_ console),
@@ -214,7 +214,7 @@ Next, we'll include the main cookbook in our _default_ recipe:
 cat <<-CONFIG >> ./cookbooks/my-elasticsearch/recipes/default.rb
 
 include_recipe 'java'
-include_recipe 'elasticsearch::default'
+include_recipe 'elasticsearch142::default'
 CONFIG
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -261,7 +261,7 @@ END
 ssh ... "sudo chef-solo -N elasticsearch-wrapper-cookbook-test -j node.json"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For customizing the default attributes, there's a `elasticsearch::customize` recipe,
+For customizing the default attributes, there's a `elasticsearch142::customize` recipe,
 which solves -- for the time being -- problems when over-riding the attributes.
 
 Create a `elasticsearch/attributes/customize.rb` file in your wrapper cookbook,
@@ -281,7 +281,7 @@ management tool such as [_BigDesk_](http://github.com/lukas-vlcek/bigdesk) or
 (Don't forget to set the `node.elasticsearch[:nginx][:allow_cluster_api]` attribute to _true_
 if you want to access these tools via the proxy.)
 
-To enable authorized access to _Elasticsearch_, you need to include the `elasticsearch::proxy` recipe,
+To enable authorized access to _Elasticsearch_, you need to include the `elasticsearch142::proxy` recipe,
 which will install, configure and run [_Nginx_](http://nginx.org) as a reverse proxy, allowing users with proper
 credentials to connect.
 

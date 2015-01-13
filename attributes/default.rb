@@ -8,7 +8,7 @@ Chef::Log.debug "Loaded settings: #{settings.inspect}"
 node.default[:elasticsearch] ||= {}
 node.normal[:elasticsearch]  ||= {}
 
-include_attribute 'elasticsearch::customize'
+include_attribute 'elasticsearch142::customize'
 
 node.normal[:elasticsearch]    = DeepMerge.merge(node.default[:elasticsearch].to_hash, node.normal[:elasticsearch].to_hash)
 node.normal[:elasticsearch]    = DeepMerge.merge(node.normal[:elasticsearch].to_hash, settings.to_hash)
@@ -29,8 +29,8 @@ default.elasticsearch142[:node][:name]    = 'elasticsearch142'
 
 # === USER & PATHS
 #
-default.elasticsearch[:dir]       = "/usr/local"
-default.elasticsearch[:bindir]    = "/usr/local/bin"
+default.elasticsearch142[:dir]       = "/opt/elasticsearch142/usr/local"
+default.elasticsearch142[:bindir]    = "/opt/elasticsearch142/usr/local/bin"
 default.elasticsearch142[:user]      = "elasticsearch142"
 default.elasticsearch[:uid]       = nil
 default.elasticsearch[:gid]       = nil

@@ -14,7 +14,7 @@ module Extensions
   #
   #     install_plugin 'hunspell', 'url' => 'https://github.com/downloads/.../elasticsearch-analysis-hunspell-1.1.1.zip'
   #
-  # The "elasticsearch::plugins" recipe will install all plugins listed in
+  # The "elasticsearch142::plugins" recipe will install all plugins listed in
   # the role/node attributes or in the data bag (`node.elasticsearch.plugins`).
   #
   # Example:
@@ -37,19 +37,19 @@ module Extensions
         version = params['version'] ? "/#{params['version']}" : nil
         url     = params['url']     ? " -url #{params['url']}" : nil
 
-        command = "#{node.elasticsearch[:bindir]}/plugin -install #{name}#{version}#{url}"
+        command = "#{node.elasticsearch142[:bindir]}/plugin -install #{name}#{version}#{url}"
         Chef::Log.debug command
 
         raise "[!] Failed to install plugin" unless system command
 
         # Ensure proper permissions
-        raise "[!] Failed to set permission" unless system "chown -R #{node.elasticsearch142[:user]}:#{node.elasticsearch142[:user]} #{node.elasticsearch[:dir]}/elasticsearch-#{node.elasticsearch142[:version]}/plugins/"
+        raise "[!] Failed to set permission" unless system "chown -R #{node.elasticsearch142[:user]}:#{node.elasticsearch142[:user]} #{node.elasticsearch142[:dir]}/elasticsearch-#{node.elasticsearch142[:version]}/plugins/"
       end
 
       notifies :restart, 'service[elasticsearch]' unless node.elasticsearch[:skip_restart]
 
       not_if do
-        Dir.entries("#{node.elasticsearch[:dir]}/elasticsearch-#{node.elasticsearch142[:version]}/plugins/").any? do |plugin|
+        Dir.entries("#{node.elasticsearch142[:dir]}/elasticsearch-#{node.elasticsearch142[:version]}/plugins/").any? do |plugin|
           next if plugin =~ /^\./
           name.include? plugin
         end rescue false

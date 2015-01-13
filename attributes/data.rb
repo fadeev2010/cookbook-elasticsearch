@@ -101,4 +101,4 @@ default.elasticsearch[:data][:devices] = data['devices'] || {}
 
 # Perform package update (https://github.com/opscode-cookbooks/build-essential#usage)
 #
-node.default.build_essential.compiletime = true if node.recipes.any? { |r| r =~ /elasticsearch::ebs|build-essential/ }
+node.default.build_essential.compiletime = true if node.recipes.any? { |r| r =~ /elasticsearch142::ebs|build-essential/ }
