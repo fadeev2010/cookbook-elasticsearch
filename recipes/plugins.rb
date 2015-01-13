@@ -1,6 +1,6 @@
-directory "#{node.elasticsearch[:dir]}/elasticsearch-#{node.elasticsearch[:version]}/plugins/" do
-  owner node.elasticsearch[:user]
-  group node.elasticsearch[:user]
+sdirectory "#{node.elasticsearch[:dir]}/elasticsearch-#{node.elasticsearch142[:version]}/plugins/" do
+  owner node.elasticsearch142[:user]
+  group node.elasticsearch142[:user]
   mode 0755
   recursive true
 end

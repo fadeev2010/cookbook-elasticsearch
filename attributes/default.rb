@@ -16,7 +16,7 @@ node.normal[:elasticsearch]    = DeepMerge.merge(node.normal[:elasticsearch].to_
 
 # === VERSION AND LOCATION
 #
-default.elasticsearch[:version]       = "1.4.2"
+default.elasticsearch142[:version]       = "1.4.2"
 default.elasticsearch[:host]          = "http://download.elasticsearch.org"
 default.elasticsearch[:repository]    = "elasticsearch/elasticsearch"
 default.elasticsearch[:filename]      = nil
@@ -24,23 +24,23 @@ default.elasticsearch[:download_url]  = nil
 
 # === NAMING
 #
-default.elasticsearch[:cluster][:name] = 'elasticsearch142'
-default.elasticsearch[:node][:name]    = 'elasticsearch142'
+default.elasticsearch142[:cluster][:name] = 'elasticsearch142'
+default.elasticsearch142[:node][:name]    = 'elasticsearch142'
 
 # === USER & PATHS
 #
 default.elasticsearch[:dir]       = "/usr/local"
 default.elasticsearch[:bindir]    = "/usr/local/bin"
-default.elasticsearch[:user]      = "elasticsearch142"
+default.elasticsearch142[:user]      = "elasticsearch142"
 default.elasticsearch[:uid]       = nil
 default.elasticsearch[:gid]       = nil
 
-default.elasticsearch[:path][:conf] = "/opt/elasticsearch142"
-default.elasticsearch[:path][:data] = "/var/elasticsearch142/data"
-default.elasticsearch[:path][:logs] = "/var/log/elasticsearch142"
+default.elasticsearch142[:path][:conf] = "/opt/elasticsearch142"
+default.elasticsearch142[:path][:data] = "/var/elasticsearch142/data"
+default.elasticsearch142[:path][:logs] = "/var/log/elasticsearch142"
 
 default.elasticsearch[:pid_path]  = "/var/run"
-default.elasticsearch[:pid_file]  = "#{node.elasticsearch[:pid_path]}/#{node.elasticsearch[:node][:name].to_s.gsub(/\W/, '_')}.pid"
+default.elasticsearch[:pid_file]  = "#{node.elasticsearch[:pid_path]}/#{node.elasticsearch142[:node][:name].to_s.gsub(/\W/, '_')}.pid"
 
 default.elasticsearch[:templates][:elasticsearch_env] = "elasticsearch-env.sh.erb"
 default.elasticsearch[:templates][:elasticsearch_yml] = "elasticsearch.yml.erb"
@@ -96,7 +96,7 @@ default.elasticsearch[:skip_start] = false
 
 # === PORT
 #
-default.elasticsearch[:http][:port] = 9600
+default.elasticsearch142[:http][:port] = 9600
 
 # === CUSTOM CONFIGURATION
 #

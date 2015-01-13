@@ -49,7 +49,7 @@ server {
   location /status {
     proxy_method HEAD;
     proxy_intercept_errors on;
-    proxy_pass http://localhost:<%= node.elasticsearch[:http][:port] %>/;
+    proxy_pass http://localhost:<%= node.elasticsearch142[:http][:port] %>/;
   }
 <% end %>
 
