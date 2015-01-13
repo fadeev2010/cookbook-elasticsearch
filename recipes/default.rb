@@ -83,7 +83,7 @@ filename = node.elasticsearch[:filename] || "elasticsearch-#{node.elasticsearch1
 download_url = node.elasticsearch[:download_url] || [node.elasticsearch[:host],
                 node.elasticsearch[:repository], filename].join('/')
 
-ark "elasticsearch" do
+ark "elasticsearch142" do
   url   download_url
   owner node.elasticsearch142[:user]
   group node.elasticsearch142[:user]
@@ -119,10 +119,10 @@ end
 
 log "increase limits for the elasticsearch user"
 
-file "/etc/security/limits.d/10-elasticsearch.conf" do
+file "/etc/security/limits.d/10-elasticsearch142.conf" do
   content <<-END.gsub(/^    /, '')
-    #{node.elasticsearch.fetch(:user, "elasticsearch")}     -    nofile    #{node.elasticsearch[:limits][:nofile]}
-    #{node.elasticsearch.fetch(:user, "elasticsearch")}     -    memlock   #{node.elasticsearch[:limits][:memlock]}
+    #{node.elasticsearch.fetch(:user, "elasticsearch142")}     -    nofile    #{node.elasticsearch[:limits][:nofile]}
+    #{node.elasticsearch.fetch(:user, "elasticsearch142")}     -    memlock   #{node.elasticsearch[:limits][:memlock]}
   END
 end
 
