@@ -30,7 +30,7 @@ default.elasticsearch142[:node][:name]    = 'elasticsearch142'
 # === USER & PATHS
 #
 default.elasticsearch142[:dir]       = "/opt/elasticsearch142"
-default.elasticsearch142[:bindir]    = "/opt/elasticsearch142/bin"
+default.elasticsearch142[:bindir]    = "/opt/elasticsearch142/elasticsearch142/bin"
 default.elasticsearch142[:user]      = "elasticsearch142"
 default.elasticsearch[:uid]       = nil
 default.elasticsearch[:gid]       = nil
