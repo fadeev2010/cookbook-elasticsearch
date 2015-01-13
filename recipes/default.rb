@@ -50,6 +50,11 @@ directory node.elasticsearch[:pid_path] do
   recursive true
 end
 
+directory node.elasticsearch142[:bindir] do
+  mode '0755'
+  recursive true
+end
+
 # Create data path directories
 #
 data_paths = node.elasticsearch142[:path][:data].is_a?(Array) ? node.elasticsearch142[:path][:data] : node.elasticsearch142[:path][:data].split(',')
