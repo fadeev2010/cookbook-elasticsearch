@@ -1,5 +1,5 @@
-include_attribute "elasticsearch142::default"
-include_attribute "elasticsearch142::nginx"
+include_attribute "droid-elasticsearch142::default"
+include_attribute "droid-elasticsearch142::nginx"
 
 # Try to load data bag item 'elasticsearch/aws' ------------------
 #
