@@ -7,15 +7,15 @@ describe_recipe 'elasticsearch142::default' do
   describe "Installation" do
 
     it "installs libraries to versioned directory" do
-      version = node[:elasticsearch][:version]
+      version = node[:elasticsearch142][:version]
 
-      directory("/usr/local/elasticsearch-#{node[:elasticsearch][:version]}").
+      directory("/usr/local/elasticsearch-#{node[:elasticsearch142][:version]}").
         must_exist.
         with(:owner, 'elasticsearch')
     end
 
     it "installs elasticsearch jar" do
-      version = node[:elasticsearch][:version]
+      version = node[:elasticsearch142][:version]
 
       file("/usr/local/elasticsearch-#{version}/lib/elasticsearch-#{version}.jar").
         must_exist.
@@ -23,7 +23,7 @@ describe_recipe 'elasticsearch142::default' do
     end if Chef::VERSION > '10.14'
 
     it "has a link to versioned directory" do
-      version = node[:elasticsearch][:version]
+      version = node[:elasticsearch142][:version]
 
       link("/usr/local/elasticsearch").
         must_exist.

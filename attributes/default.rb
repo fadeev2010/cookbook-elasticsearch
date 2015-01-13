@@ -40,10 +40,10 @@ default.elasticsearch142[:path][:data] = "/var/elasticsearch142/data"
 default.elasticsearch142[:path][:logs] = "/var/log/elasticsearch142"
 
 default.elasticsearch[:pid_path]  = "/var/run"
-default.elasticsearch[:pid_file]  = "#{node.elasticsearch[:pid_path]}/#{node.elasticsearch142[:node][:name].to_s.gsub(/\W/, '_')}.pid"
+default.elasticsearch142[:pid_file]  = "#{node.elasticsearch[:pid_path]}/#{node.elasticsearch142[:node][:name].to_s.gsub(/\W/, '_')}.pid"
 
-default.elasticsearch[:templates][:elasticsearch_env] = "elasticsearch-env.sh.erb"
-default.elasticsearch[:templates][:elasticsearch_yml] = "elasticsearch.yml.erb"
+default.elasticsearch142[:templates][:elasticsearch_env] = "elasticsearch-env.sh.erb"
+default.elasticsearch142[:templates][:elasticsearch_yml] = "elasticsearch.yml.erb"
 default.elasticsearch[:templates][:logging_yml]       = "logging.yml.erb"
 
 # === MEMORY

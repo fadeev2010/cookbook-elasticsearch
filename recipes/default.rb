@@ -93,8 +93,8 @@ ark "elasticsearch" do
   prefix_root   ark_prefix_root
   prefix_home   ark_prefix_home
 
-  notifies :start,   'service[elasticsearch]' unless node.elasticsearch[:skip_start]
-  notifies :restart, 'service[elasticsearch]' unless node.elasticsearch[:skip_restart]
+  notifies :start,   'service[elasticsearch142]' unless node.elasticsearch[:skip_start]
+  notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch[:skip_restart]
 
   not_if do
     link   = "#{node.elasticsearch142[:dir]}/elasticsearch"
@@ -130,20 +130,20 @@ end
 #
 template "elasticsearch-env.sh" do
   path   "#{node.elasticsearch142[:path][:conf]}/elasticsearch-env.sh"
-  source node.elasticsearch[:templates][:elasticsearch_env]
+  source node.elasticsearch142[:templates][:elasticsearch_env]
   owner  node.elasticsearch142[:user] and group node.elasticsearch142[:user] and mode 0755
 
-  notifies :restart, 'service[elasticsearch]' unless node.elasticsearch[:skip_restart]
+  notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch[:skip_restart]
 end
 
 # Create ES config file
 #
 template "elasticsearch.yml" do
   path   "#{node.elasticsearch142[:path][:conf]}/elasticsearch.yml"
-  source node.elasticsearch[:templates][:elasticsearch_yml]
+  source node.elasticsearch142[:templates][:elasticsearch_yml]
   owner  node.elasticsearch142[:user] and group node.elasticsearch142[:user] and mode 0755
 
-  notifies :restart, 'service[elasticsearch]' unless node.elasticsearch[:skip_restart]
+  notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch[:skip_restart]
 end
 
 # Create ES logging file
@@ -153,5 +153,5 @@ template "logging.yml" do
   source node.elasticsearch[:templates][:logging_yml]
   owner  node.elasticsearch142[:user] and group node.elasticsearch142[:user] and mode 0755
 
-  notifies :restart, 'service[elasticsearch]' unless node.elasticsearch[:skip_restart]
+  notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch[:skip_restart]
 end
