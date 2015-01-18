@@ -1,4 +1,4 @@
-sdirectory "#{node.elasticsearch142[:dir]}/elasticsearch-#{node.elasticsearch142[:version]}/plugins/" do
+directory "#{node.elasticsearch142[:dir]}/elasticsearch-#{node.elasticsearch142[:version]}/plugins/" do
   owner node.elasticsearch142[:user]
   group node.elasticsearch142[:user]
   mode 0755
