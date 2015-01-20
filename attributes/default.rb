@@ -29,15 +29,24 @@ default.elasticsearch142[:node][:name]    = 'elasticsearch142'
 
 # === USER & PATHS
 #
-default.elasticsearch142[:dir]       = "/opt/elasticsearch142"
-default.elasticsearch142[:bindir]    = "/opt/elasticsearch142/elasticsearch142/bin"
+default.elasticsearch142[:dir]       = "/usr/local"     #{}"/opt/elasticsearch142"
+default.elasticsearch142[:bindir]    = "/usr/local/bin" #{}"/opt/elasticsearch142/elasticsearch142/bin"
 default.elasticsearch142[:user]      = "elasticsearch142"
 default.elasticsearch[:uid]       = nil
 default.elasticsearch[:gid]       = nil
 
-default.elasticsearch142[:path][:conf] = "/opt/elasticsearch142"
-default.elasticsearch142[:path][:data] = "/var/elasticsearch142/data"
-default.elasticsearch142[:path][:logs] = "/var/log/elasticsearch142"
+# default.elasticsearch[:dir]       = "/usr/local"
+# default.elasticsearch[:bindir]    = "/usr/local/bin"
+# default.elasticsearch[:user]      = "elasticsearch"
+
+default.elasticsearch142[:path][:conf] = "/usr/local/etc/elasticsearch142"      #{}"/opt/elasticsearch142"
+default.elasticsearch142[:path][:data] = "/usr/local/var/data/elasticsearch142" #{}"/var/elasticsearch142/data"
+default.elasticsearch142[:path][:logs] = "/usr/local/var/log/elasticsearch142"  #{}"/var/log/elasticsearch142"
+
+# default.elasticsearch[:path][:conf] = "/usr/local/etc/elasticsearch"
+# default.elasticsearch[:path][:data] = "/usr/local/var/data/elasticsearch"
+# default.elasticsearch[:path][:logs] = "/usr/local/var/log/elasticsearch"
+
 
 default.elasticsearch[:pid_path]  = "/var/run"
 default.elasticsearch142[:pid_file]  = "#{node.elasticsearch[:pid_path]}/#{node.elasticsearch142[:node][:name].to_s.gsub(/\W/, '_')}.pid"
