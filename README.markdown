@@ -278,7 +278,7 @@ Usually, you will restrict the access to _Elasticsearch_ with firewall rules. Ho
 to be able to connect to the _Elasticsearch_ cluster from `curl` or a HTTP client, or to use a
 management tool such as [_BigDesk_](http://github.com/lukas-vlcek/bigdesk) or
 [_Paramedic_](http://github.com/karmi/elasticsearch-paramedic).
-(Don't forget to set the `node.elasticsearch[:nginx][:allow_cluster_api]` attribute to _true_
+(Don't forget to set the `node.elasticsearch142[:nginx][:allow_cluster_api]` attribute to _true_
 if you want to access these tools via the proxy.)
 
 To enable authorized access to _Elasticsearch_, you need to include the `elasticsearch142::proxy` recipe,

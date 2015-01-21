@@ -29,14 +29,14 @@ default.elasticsearch['plugins']['elasticsearch/elasticsearch-cloud-aws']['versi
 # AWS configuration is set based on data bag values.
 # You may choose to configure them in your node configuration instead.
 #
-default.elasticsearch[:gateway][:type]               = ( aws['gateway']['type']                rescue nil )
-default.elasticsearch[:discovery][:type]             = ( aws['discovery']['type']              rescue nil )
-default.elasticsearch[:discovery][:ec2][:groups]     = ( aws['discovery']['ec2']['groups']     rescue nil )
-default.elasticsearch[:discovery][:ec2][:tag]        = ( aws['discovery']['ec2']['tag']        rescue {} )
+default.elasticsearch142[:gateway][:type]               = ( aws['gateway']['type']                rescue nil )
+default.elasticsearch142[:discovery][:type]             = ( aws['discovery']['type']              rescue nil )
+default.elasticsearch142[:discovery][:ec2][:groups]     = ( aws['discovery']['ec2']['groups']     rescue nil )
+default.elasticsearch142[:discovery][:ec2][:tag]        = ( aws['discovery']['ec2']['tag']        rescue {} )
 
-default.elasticsearch[:cloud][:aws][:access_key]     = ( aws['cloud']['aws']['access_key']     rescue nil )
-default.elasticsearch[:cloud][:aws][:secret_key]     = ( aws['cloud']['aws']['secret_key']     rescue nil )
-default.elasticsearch[:cloud][:aws][:region]         = ( aws['cloud']['aws']['region']         rescue nil )
-default.elasticsearch[:cloud][:aws][:ec2][:endpoint] = ( aws['cloud']['aws']['ec2']['endpoint'] rescue nil )
+default.elasticsearch142[:cloud][:aws][:access_key]     = ( aws['cloud']['aws']['access_key']     rescue nil )
+default.elasticsearch142[:cloud][:aws][:secret_key]     = ( aws['cloud']['aws']['secret_key']     rescue nil )
+default.elasticsearch142[:cloud][:aws][:region]         = ( aws['cloud']['aws']['region']         rescue nil )
+default.elasticsearch142[:cloud][:aws][:ec2][:endpoint] = ( aws['cloud']['aws']['ec2']['endpoint'] rescue nil )
 
-default.elasticsearch[:cloud][:node][:auto_attributes] = true
+default.elasticsearch142[:cloud][:node][:auto_attributes] = true

@@ -1,4 +1,4 @@
-node.elasticsearch[:data][:devices].each do |device, params|
+node.elasticsearch142[:data][:devices].each do |device, params|
   # Format volume if format command is provided and volume is unformatted
   #
   bash "Format device: #{device}" do
@@ -30,7 +30,7 @@ node.elasticsearch[:data][:devices].each do |device, params|
     only_if { File.exists?(device) }
     if node.elasticsearch142[:path][:data].include?(params[:mount_path])
       Chef::Log.debug "Schedule Elasticsearch service restart..."
-      notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch[:skip_restart]
+      notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch142[:skip_restart]
     end
   end
 

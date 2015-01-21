@@ -10,7 +10,7 @@ include_recipe "ark"
 # Create user and group
 #
 group node.elasticsearch142[:user] do
-  gid node.elasticsearch[:gid]
+  gid node.elasticsearch142[:gid]
   action :create
   system true
 end
@@ -19,7 +19,7 @@ user node.elasticsearch142[:user] do
   comment "ElasticSearch User"
   home    "#{node.elasticsearch142[:dir]}/elasticsearch"
   shell   "/bin/bash"
-  uid     node.elasticsearch[:uid]
+  uid     node.elasticsearch142[:uid]
   gid     node.elasticsearch142[:user]
   supports :manage_home => false
   action  :create
@@ -46,7 +46,7 @@ end
 end
 
 # My_changes
-directory node.elasticsearch[:pid_path] do
+directory node.elasticsearch142[:pid_path] do
   owner node.elasticsearch142[:user] and group node.elasticsearch142[:user] and mode 0755
   recursive true
 end
@@ -80,9 +80,9 @@ end
 ark_prefix_root = node.elasticsearch142[:dir] || node.ark[:prefix_root]
 ark_prefix_home = node.elasticsearch142[:dir] || node.ark[:prefix_home]
 
-filename = node.elasticsearch[:filename] || "elasticsearch-#{node.elasticsearch142[:version]}.tar.gz"
-download_url = node.elasticsearch[:download_url] || [node.elasticsearch[:host],
-                node.elasticsearch[:repository], filename].join('/')
+filename = node.elasticsearch142[:filename] || "elasticsearch-#{node.elasticsearch142[:version]}.tar.gz"
+download_url = node.elasticsearch142[:download_url] || [node.elasticsearch142[:host],
+                node.elasticsearch142[:repository], filename].join('/')
 
 ark "elasticsearch142" do
   url   download_url
@@ -90,12 +90,12 @@ ark "elasticsearch142" do
   group node.elasticsearch142[:user]
   version node.elasticsearch142[:version]
   has_binaries ['bin/elasticsearch', 'bin/plugin']
-  checksum node.elasticsearch[:checksum]
+  checksum node.elasticsearch142[:checksum]
   prefix_root   ark_prefix_root
   prefix_home   ark_prefix_home
 
-  notifies :start,   'service[elasticsearch142]' unless node.elasticsearch[:skip_start]
-  notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch[:skip_restart]
+  notifies :start,   'service[elasticsearch142]' unless node.elasticsearch142[:skip_start]
+  notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch142[:skip_restart]
 
   not_if do
     link   = "#{node.elasticsearch142[:dir]}/elasticsearch"
@@ -122,8 +122,8 @@ log "increase limits for the elasticsearch user"
 
 file "/etc/security/limits.d/10-elasticsearch142.conf" do
   content <<-END.gsub(/^    /, '')
-    #{node.elasticsearch.fetch(:user, "elasticsearch142")}     -    nofile    #{node.elasticsearch[:limits][:nofile]}
-    #{node.elasticsearch.fetch(:user, "elasticsearch142")}     -    memlock   #{node.elasticsearch[:limits][:memlock]}
+    #{node.elasticsearch.fetch(:user, "elasticsearch142")}     -    nofile    #{node.elasticsearch142[:limits][:nofile]}
+    #{node.elasticsearch.fetch(:user, "elasticsearch142")}     -    memlock   #{node.elasticsearch142[:limits][:memlock]}
   END
 end
 
@@ -134,7 +134,7 @@ template "elasticsearch-env.sh" do
   source node.elasticsearch142[:templates][:elasticsearch_env]
   owner  node.elasticsearch142[:user] and group node.elasticsearch142[:user] and mode 0755
 
-  notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch[:skip_restart]
+  notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch142[:skip_restart]
 end
 
 # Create ES config file
@@ -144,15 +144,15 @@ template "elasticsearch.yml" do
   source node.elasticsearch142[:templates][:elasticsearch_yml]
   owner  node.elasticsearch142[:user] and group node.elasticsearch142[:user] and mode 0755
 
-  notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch[:skip_restart]
+  notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch142[:skip_restart]
 end
 
 # Create ES logging file
 #
 template "logging.yml" do
   path   "#{node.elasticsearch142[:path][:conf]}/logging.yml"
-  source node.elasticsearch[:templates][:logging_yml]
+  source node.elasticsearch142[:templates][:logging_yml]
   owner  node.elasticsearch142[:user] and group node.elasticsearch142[:user] and mode 0755
 
-  notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch[:skip_restart]
+  notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch142[:skip_restart]
 end

@@ -17,10 +17,10 @@ node.normal[:elasticsearch]    = DeepMerge.merge(node.normal[:elasticsearch].to_
 # === VERSION AND LOCATION
 #
 default.elasticsearch142[:version]       = "1.4.2"
-default.elasticsearch[:host]          = "http://download.elasticsearch.org"
-default.elasticsearch[:repository]    = "elasticsearch/elasticsearch"
-default.elasticsearch[:filename]      = nil
-default.elasticsearch[:download_url]  = nil
+default.elasticsearch142[:host]          = "http://download.elasticsearch.org"
+default.elasticsearch142[:repository]    = "elasticsearch/elasticsearch"
+default.elasticsearch142[:filename]      = nil
+default.elasticsearch142[:download_url]  = nil
 
 # === NAMING
 #
@@ -32,8 +32,8 @@ default.elasticsearch142[:node][:name]    = 'elasticsearch142'
   default.elasticsearch142[:dir]       = "/opt/elasticsearch142"
   default.elasticsearch142[:bindir]    = "/opt/elasticsearch142/elasticsearch142/bin"
   default.elasticsearch142[:user]      = "elasticsearch142"
-default.elasticsearch[:uid]       = nil
-default.elasticsearch[:gid]       = nil
+default.elasticsearch142[:uid]       = nil
+default.elasticsearch142[:gid]       = nil
 
 # default.elasticsearch142[:dir]       = "/usr/local"
 # default.elasticsearch142[:bindir]    = "/usr/local/bin"
@@ -48,12 +48,12 @@ default.elasticsearch[:gid]       = nil
 # default.elasticsearch142[:path][:logs] = "/usr/local/var/log/elasticsearch"
 
 
-default.elasticsearch[:pid_path]  = "/var/run"
-default.elasticsearch142[:pid_file]  = "#{node.elasticsearch[:pid_path]}/#{node.elasticsearch142[:node][:name].to_s.gsub(/\W/, '_')}.pid"
+default.elasticsearch142[:pid_path]  = "/var/run"
+default.elasticsearch142[:pid_file]  = "#{node.elasticsearch142[:pid_path]}/#{node.elasticsearch142[:node][:name].to_s.gsub(/\W/, '_')}.pid"
 
 default.elasticsearch142[:templates][:elasticsearch_env] = "elasticsearch-env.sh.erb"
 default.elasticsearch142[:templates][:elasticsearch_yml] = "elasticsearch.yml.erb"
-default.elasticsearch[:templates][:logging_yml]       = "logging.yml.erb"
+default.elasticsearch142[:templates][:logging_yml]       = "logging.yml.erb"
 
 # === MEMORY
 #
@@ -61,11 +61,11 @@ default.elasticsearch[:templates][:logging_yml]       = "logging.yml.erb"
 # You may choose to set it in your node/role configuration instead.
 #
 allocated_memory = "#{(node.memory.total.to_i * 0.6 ).floor / 1024}m"
-default.elasticsearch[:allocated_memory] = allocated_memory
+default.elasticsearch142[:allocated_memory] = allocated_memory
 
 # === GARBAGE COLLECTION SETTINGS
 #
-default.elasticsearch[:gc_settings] =<<-CONFIG
+default.elasticsearch142[:gc_settings] =<<-CONFIG
   -XX:+UseParNewGC
   -XX:+UseConcMarkSweepGC
   -XX:CMSInitiatingOccupancyFraction=75
@@ -78,30 +78,30 @@ CONFIG
 # By default, the `mlockall` is set to true: on weak machines and Vagrant boxes,
 # you may want to disable it.
 #
-default.elasticsearch[:bootstrap][:mlockall] = ( node.memory.total.to_i >= 1048576 ? true : false )
-default.elasticsearch[:limits][:memlock] = 'unlimited'
-default.elasticsearch[:limits][:nofile]  = '64000'
+default.elasticsearch142[:bootstrap][:mlockall] = ( node.memory.total.to_i >= 1048576 ? true : false )
+default.elasticsearch142[:limits][:memlock] = 'unlimited'
+default.elasticsearch142[:limits][:nofile]  = '64000'
 
 # === PRODUCTION SETTINGS
 #
-default.elasticsearch[:index][:mapper][:dynamic]   = true
-default.elasticsearch[:action][:auto_create_index] = true
-default.elasticsearch[:action][:disable_delete_all_indices] = true
-default.elasticsearch[:node][:max_local_storage_nodes] = 1
+default.elasticsearch142[:index][:mapper][:dynamic]   = true
+default.elasticsearch142[:action][:auto_create_index] = true
+default.elasticsearch142[:action][:disable_delete_all_indices] = true
+default.elasticsearch142[:node][:max_local_storage_nodes] = 1
 
-default.elasticsearch[:discovery][:zen][:ping][:multicast][:enabled] = true
-default.elasticsearch[:discovery][:zen][:minimum_master_nodes] = 1
-default.elasticsearch[:gateway][:type] = 'local'
-default.elasticsearch[:gateway][:expected_nodes] = 1
+default.elasticsearch142[:discovery][:zen][:ping][:multicast][:enabled] = true
+default.elasticsearch142[:discovery][:zen][:minimum_master_nodes] = 1
+default.elasticsearch142[:gateway][:type] = 'local'
+default.elasticsearch142[:gateway][:expected_nodes] = 1
 
-default.elasticsearch[:thread_stack_size] = "256k"
+default.elasticsearch142[:thread_stack_size] = "256k"
 
-default.elasticsearch[:env_options] = ""
+default.elasticsearch142[:env_options] = ""
 
 # === OTHER SETTINGS
 #
-default.elasticsearch[:skip_restart] = false
-default.elasticsearch[:skip_start] = false
+default.elasticsearch142[:skip_restart] = false
+default.elasticsearch142[:skip_start] = false
 
 # === PORT
 #
@@ -109,13 +109,13 @@ default.elasticsearch142[:http][:port] = 9600
 
 # === CUSTOM CONFIGURATION
 #
-default.elasticsearch[:custom_config] = {}
+default.elasticsearch142[:custom_config] = {}
 
 # === LOGGING
 #
 # See `attributes/logging.rb`
 #
-default.elasticsearch[:logging] = {}
+default.elasticsearch142[:logging] = {}
 
 # --------------------------------------------------
 # NOTE: Setting the attributes for elasticsearch.yml
@@ -143,7 +143,7 @@ default.elasticsearch[:logging] = {}
 # (eg. memory settings, node name), or reasonable defaults for production.
 #
 # The template is based on the elasticsearch.yml file from the Elasticsearch distribution;
-# to set other configurations, set the `node.elasticsearch[:custom_config]` attribute in the
+# to set other configurations, set the `node.elasticsearch142[:custom_config]` attribute in the
 # node configuration, `elasticsearch/settings` data bag, role/environment definition, etc:
 #
 #     // ...

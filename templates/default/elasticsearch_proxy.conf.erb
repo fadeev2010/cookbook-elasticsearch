@@ -1,12 +1,12 @@
 server {
-  listen   <%= node.elasticsearch[:nginx][:port] %>;
-  server_name  <%= node.elasticsearch[:nginx][:server_name] %>;
-  client_max_body_size <%= node.elasticsearch[:nginx][:client_max_body_size] %>;
+  listen   <%= node.elasticsearch142[:nginx][:port] %>;
+  server_name  <%= node.elasticsearch142[:nginx][:server_name] %>;
+  client_max_body_size <%= node.elasticsearch142[:nginx][:client_max_body_size] %>;
 
-  error_log   <%= node.elasticsearch[:nginx][:log_dir] %>/elasticsearch-errors.log;
-  access_log  <%= node.elasticsearch[:nginx][:log_dir] %>/elasticsearch.log;
+  error_log   <%= node.elasticsearch142[:nginx][:log_dir] %>/elasticsearch-errors.log;
+  access_log  <%= node.elasticsearch142[:nginx][:log_dir] %>/elasticsearch.log;
 
-  location <%= node.elasticsearch[:nginx][:location] %> {
+  location <%= node.elasticsearch142[:nginx][:location] %> {
 
     # Deny Nodes Shutdown API
     if ($request_filename ~ "_shutdown") {
@@ -14,7 +14,7 @@ server {
       break;
     }
 
-<% unless node.elasticsearch[:nginx][:allow_cluster_api] %>
+<% unless node.elasticsearch142[:nginx][:allow_cluster_api] %>
     # Deny access to Cluster API
     if ($request_filename ~ "_cluster") {
       return 403;
@@ -37,15 +37,15 @@ server {
     add_header Access-Control-Allow-Headers 'X-Requested-With, Content-Type';
     add_header Access-Control-Allow-Credentials true;
 
-<% unless node.elasticsearch[:nginx][:users].empty? %>
+<% unless node.elasticsearch142[:nginx][:users].empty? %>
     # Authorize access
     auth_basic           "ElasticSearch";
-    auth_basic_user_file <%= node.elasticsearch[:nginx][:passwords_file] %>;
+    auth_basic_user_file <%= node.elasticsearch142[:nginx][:passwords_file] %>;
 <% end %>
 
   }
 
-<% if node.elasticsearch[:nginx][:allow_status] %>
+<% if node.elasticsearch142[:nginx][:allow_status] %>
   location /status {
     proxy_method HEAD;
     proxy_intercept_errors on;
@@ -53,10 +53,10 @@ server {
   }
 <% end %>
 
-<% if node.elasticsearch[:nginx][:ssl][:cert_file] && node.elasticsearch[:nginx][:ssl][:key_file] %>
+<% if node.elasticsearch142[:nginx][:ssl][:cert_file] && node.elasticsearch142[:nginx][:ssl][:key_file] %>
   ssl on;
-  ssl_certificate <%= node.elasticsearch[:nginx][:ssl][:cert_file] %>;
-  ssl_certificate_key <%= node.elasticsearch[:nginx][:ssl][:key_file] %>;
+  ssl_certificate <%= node.elasticsearch142[:nginx][:ssl][:cert_file] %>;
+  ssl_certificate_key <%= node.elasticsearch142[:nginx][:ssl][:key_file] %>;
   
   server_tokens off;
   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
