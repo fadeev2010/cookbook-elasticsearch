@@ -45,8 +45,9 @@ end
   end
 end
 
+# My_changes
 directory node.elasticsearch[:pid_path] do
-  mode '0755'
+  owner node.elasticsearch142[:user] and group node.elasticsearch142[:user] and mode 0755
   recursive true
 end
 
