@@ -122,14 +122,14 @@ default.elasticsearch142[:logging] = {}
 # NOTE: Setting the attributes for elasticsearch.yml
 # --------------------------------------------------
 #
-# The template uses the `print_value` extension method to print attributes with a "truthy"
+# The template uses the `print_value142` extension method to print attributes with a "truthy"
 # value, set either in data bags, node attributes, role override attributes, etc.
 #
 # It is possible to set *any* configuration value exposed by the Elasticsearch configuration file.
 #
 # For example:
 #
-#     <%= print_value 'cluster.routing.allocation.node_concurrent_recoveries' -%>
+#     <%= print_value142 'cluster.routing.allocation.node_concurrent_recoveries' -%>
 #
 # will print a line:
 #

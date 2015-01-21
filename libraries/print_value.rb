@@ -7,11 +7,11 @@ module Extensions
     #
     # 1. Using the key as a node attribute:
     #
-    #    <%= print_value 'bar' -%> is evaluated as: `node.elasticsearch142[:bar]`
+    #    <%= print_value142 'bar' -%> is evaluated as: `node.elasticsearch142[:bar]`
     #
     #    You may use a dot-separated key for nested attributes:
     #
-    #    <%= print_value 'foo.bar' -%> is evaluated in multiple ways in this order:
+    #    <%= print_value142 'foo.bar' -%> is evaluated in multiple ways in this order:
     #
     #    a) as `node.elasticsearch142['foo.bar']`,
     #    b) as `node.elasticsearch142['foo_bar']`,
@@ -19,15 +19,15 @@ module Extensions
     #
     # 2. You may also provide an explicit value for the method, which is then used:
     #
-    #    <%= print_value 'bar', node.elasticsearch142[:foo] -%>
+    #    <%= print_value142 'bar', node.elasticsearch142[:foo] -%>
     #
     # You may pass a specific separator to the method:
     #
-    #    <%= print_value 'bar', separator: '=' -%>
+    #    <%= print_value142 'bar', separator: '=' -%>
     #
     # Do not forget to use an ending dash (`-`) in the ERB block, so lines for missing values are not printed!
     #
-    def print_value key, value=nil, options={}
+    def print_value142 key, value=nil, options={}
       separator = options[:separator] || ': '
       existing_value   = value
 
