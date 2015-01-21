@@ -38,7 +38,7 @@
 #################################### Paths ####################################
 
 <%= print_value 'path.conf' -%>
-<%= print_value 'path.data', (node.elasticsearch.path.data.is_a?(Array) ? node.elasticsearch.path.data.join(",") : node.elasticsearch.path.data) -%>
+<%= print_value 'path.data', (node.elasticsearch142.path.data.is_a?(Array) ? node.elasticsearch142.path.data.join(",") : node.elasticsearch142.path.data) -%>
 <%= print_value 'path.work' -%>
 <%= print_value 'path.logs' -%>
 <%= print_value 'path.plugins' -%>

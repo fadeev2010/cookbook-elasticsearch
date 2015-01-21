@@ -122,8 +122,8 @@ log "increase limits for the elasticsearch user"
 
 file "/etc/security/limits.d/10-elasticsearch142.conf" do
   content <<-END.gsub(/^    /, '')
-    #{node.elasticsearch.fetch(:user, "elasticsearch142")}     -    nofile    #{node.elasticsearch142[:limits][:nofile]}
-    #{node.elasticsearch.fetch(:user, "elasticsearch142")}     -    memlock   #{node.elasticsearch142[:limits][:memlock]}
+    #{node.elasticsearch142.fetch(:user, "elasticsearch142")}     -    nofile    #{node.elasticsearch142[:limits][:nofile]}
+    #{node.elasticsearch142.fetch(:user, "elasticsearch142")}     -    memlock   #{node.elasticsearch142[:limits][:memlock]}
   END
 end
 

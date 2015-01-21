@@ -7,15 +7,15 @@ default.elasticsearch142[:logging]['index.indexing.slowlog'] = 'TRACE, index_ind
 # NOTE: Setting the attributes for logging.yml
 # --------------------------------------------
 #
-# The template iterates over all values set in the `node.elasticsearch.logging`
+# The template iterates over all values set in the `node.elasticsearch142.logging`
 # namespace and prints all settings which have been configured;
 # this file only configures the minimal default set.
 #
 # To configure logging, simply set the corresponding attribute, eg.:
 #
-#     node.elasticsearch.logging['discovery'] = 'TRACE'
+#     node.elasticsearch142.logging['discovery'] = 'TRACE'
 #
 # Use the same notation for deeply nested attributes:
 #
-#     node.elasticsearch.logging['index.search.slowlog'] = 'DEBUG, index_search_slow_log_file'
+#     node.elasticsearch142.logging['index.search.slowlog'] = 'DEBUG, index_search_slow_log_file'
 #

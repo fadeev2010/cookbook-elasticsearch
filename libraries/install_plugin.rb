@@ -15,7 +15,7 @@ module Extensions
   #     install_plugin 'hunspell', 'url' => 'https://github.com/downloads/.../elasticsearch-analysis-hunspell-1.1.1.zip'
   #
   # The "elasticsearch142::plugins" recipe will install all plugins listed in
-  # the role/node attributes or in the data bag (`node.elasticsearch.plugins`).
+  # the role/node attributes or in the data bag (`node.elasticsearch142.plugins`).
   #
   # Example:
   #
