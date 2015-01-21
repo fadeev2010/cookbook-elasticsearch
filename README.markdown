@@ -268,7 +268,7 @@ Create a `elasticsearch/attributes/customize.rb` file in your wrapper cookbook,
 and place any attribute overrides there:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~bash
-echo "normal[:elasticsearch][:version] = '1.1.0'" > my-elasticsearch/attributes/customize.rb
+echo "normal[:elasticsearch142][:version] = '1.1.0'" > my-elasticsearch/attributes/customize.rb
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Nginx Proxy

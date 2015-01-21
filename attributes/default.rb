@@ -5,13 +5,13 @@ Chef::Log.debug "Loaded settings: #{settings.inspect}"
 
 # Initialize the node attributes with node attributes merged with data bag attributes
 #
-node.default[:elasticsearch] ||= {}
-node.normal[:elasticsearch]  ||= {}
+node.default[:elasticsearch142] ||= {}
+node.normal[:elasticsearch142]  ||= {}
 
 include_attribute 'droid-elasticsearch142::customize'
 
-node.normal[:elasticsearch]    = DeepMerge.merge(node.default[:elasticsearch].to_hash, node.normal[:elasticsearch].to_hash)
-node.normal[:elasticsearch]    = DeepMerge.merge(node.normal[:elasticsearch].to_hash, settings.to_hash)
+node.normal[:elasticsearch142]    = DeepMerge.merge(node.default[:elasticsearch142].to_hash, node.normal[:elasticsearch142].to_hash)
+node.normal[:elasticsearch142]    = DeepMerge.merge(node.normal[:elasticsearch142].to_hash, settings.to_hash)
 
 
 # === VERSION AND LOCATION

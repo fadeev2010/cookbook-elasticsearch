@@ -5,7 +5,7 @@ directory "#{node.elasticsearch142[:dir]}/elasticsearch-#{node.elasticsearch142[
   recursive true
 end
 
-node[:elasticsearch][:plugins].each do | name, config |
+node[:elasticsearch142][:plugins].each do | name, config |
   next if name == 'elasticsearch/elasticsearch-cloud-aws' && !node.recipe?('aws')
   install_plugin name, config
 end
