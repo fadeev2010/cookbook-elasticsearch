@@ -106,6 +106,7 @@ default.elasticsearch142[:skip_start] = false
 # === PORT
 #
 default.elasticsearch142[:http][:port] = 9600
+default.elasticsearch142[:transport][:tcp][:port] = 9700
 
 # === CUSTOM CONFIGURATION
 #
