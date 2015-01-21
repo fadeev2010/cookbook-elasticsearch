@@ -3,7 +3,7 @@
 #
 # By default it will search for other nodes with the query
 # `role:elasticsearch AND chef_environment:#{node.chef_environment} AND elasticsearch_cluster_name:#{node[:elasticsearch142][:cluster][:name]}`, but you may override that with the
-# `node['elasticsearch']['discovery']['search_query']` attribute.
+# `node['elasticsearch142']['discovery']['search_query']` attribute.
 #
 # Reasonable values include
 # `"tag:elasticsearch AND chef_environment:#{node.chef_environment}"` and
@@ -17,14 +17,14 @@
 # `node'elasticsearch']['discovery']['node_attribute']` attribute.
 # Reasonable values include `"fqdn"` and `"cloud.public_ipv4`.
 #
-node.set['elasticsearch']['discovery']['zen']['ping']['multicast']['enabled'] = false
-nodes = search_for_nodes(node['elasticsearch']['discovery']['search_query'],
-                         node['elasticsearch']['discovery']['node_attribute'])
+node.set['elasticsearch142']['discovery']['zen']['ping']['multicast']['enabled'] = false
+nodes = search_for_nodes(node['elasticsearch142']['discovery']['search_query'],
+                         node['elasticsearch142']['discovery']['node_attribute'])
 Chef::Log.debug("Found elasticsearch nodes at #{nodes.join(', ').inspect}")
-node.set['elasticsearch']['discovery']['zen']['ping']['unicast']['hosts'] = nodes.join(',')
+node.set['elasticsearch142']['discovery']['zen']['ping']['unicast']['hosts'] = nodes.join(',')
 
 # set minimum_master_nodes to n/2+1 to avoid split brain scenarios
-node.default['elasticsearch']['discovery']['zen']['minimum_master_nodes'] = (nodes.length / 2).floor + 1
+node.default['elasticsearch142']['discovery']['zen']['minimum_master_nodes'] = (nodes.length / 2).floor + 1
 
 # we don't want all of the nodes in the cluster to restart when a new node joins
-node.set['elasticsearch']['skip_restart'] = true
+node.set['elasticsearch142']['skip_restart'] = true
