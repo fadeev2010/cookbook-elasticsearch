@@ -29,24 +29,15 @@ default.elasticsearch142[:node][:name]    = 'elasticsearch142'
 
 # === USER & PATHS
 #
-  default.elasticsearch142[:dir]       = "/opt/elasticsearch142"
-  default.elasticsearch142[:bindir]    = "/opt/elasticsearch142/elasticsearch142/bin"
-  default.elasticsearch142[:user]      = "elasticsearch142"
+default.elasticsearch142[:dir]       = "/opt/elasticsearch142"
+default.elasticsearch142[:bindir]    = "/opt/elasticsearch142/elasticsearch142/bin"
+default.elasticsearch142[:user]      = "elasticsearch142"
 default.elasticsearch142[:uid]       = nil
 default.elasticsearch142[:gid]       = nil
 
-# default.elasticsearch142[:dir]       = "/usr/local"
-# default.elasticsearch142[:bindir]    = "/usr/local/bin"
-# default.elasticsearch142[:user]      = "elasticsearch"
-
-  default.elasticsearch142[:path][:conf] = "/opt/elasticsearch142"
-  default.elasticsearch142[:path][:data] = "/var/elasticsearch142/data"
-  default.elasticsearch142[:path][:logs] = "/var/log/elasticsearch142"
-
-# default.elasticsearch142[:path][:conf] = "/usr/local/etc/elasticsearch"
-# default.elasticsearch142[:path][:data] = "/usr/local/var/data/elasticsearch"
-# default.elasticsearch142[:path][:logs] = "/usr/local/var/log/elasticsearch"
-
+default.elasticsearch142[:path][:conf] = "/opt/elasticsearch142"
+default.elasticsearch142[:path][:data] = "/var/elasticsearch142/data"
+default.elasticsearch142[:path][:logs] = "/var/log/elasticsearch142"
 
 default.elasticsearch142[:pid_path]  = "/var/run"
 default.elasticsearch142[:pid_file]  = "#{node.elasticsearch142[:pid_path]}/#{node.elasticsearch142[:node][:name].to_s.gsub(/\W/, '_')}.pid"
@@ -60,8 +51,11 @@ default.elasticsearch142[:templates][:logging_yml]       = "logging.yml.erb"
 # Maximum amount of memory to use is automatically computed as one half of total available memory on the machine.
 # You may choose to set it in your node/role configuration instead.
 #
-allocated_memory = "#{(node.memory.total.to_i * 0.6 ).floor / 1024}m"
-default.elasticsearch142[:allocated_memory] = allocated_memory
+
+# allocated_memory = "#{(node.memory.total.to_i * 0.6 ).floor / 1024}m"
+# default.elasticsearch142[:allocated_memory] = allocated_memory
+
+default.elasticsearch142[:allocated_memory] = "600m"
 
 # === GARBAGE COLLECTION SETTINGS
 #
@@ -89,8 +83,11 @@ default.elasticsearch142[:action][:auto_create_index] = true
 default.elasticsearch142[:action][:disable_delete_all_indices] = true
 default.elasticsearch142[:node][:max_local_storage_nodes] = 1
 
-default.elasticsearch142[:discovery][:zen][:ping][:multicast][:enabled] = true
+default.elasticsearch142[:discovery][:zen][:ping][:multicast][:enabled] = false # Default: true, false if two elastic in one server
 default.elasticsearch142[:discovery][:zen][:minimum_master_nodes] = 1
+
+# discovery.zen.ping.multicast.port: 54329
+
 default.elasticsearch142[:gateway][:type] = 'local'
 default.elasticsearch142[:gateway][:expected_nodes] = 1
 
@@ -107,6 +104,9 @@ default.elasticsearch142[:skip_start] = false
 #
 default.elasticsearch142[:http][:port] = 9600
 default.elasticsearch142[:transport][:tcp][:port] = 9700
+
+# network.host: 127.0.0.1
+# network.bind_host: 127.0.0.1
 
 # === CUSTOM CONFIGURATION
 #
