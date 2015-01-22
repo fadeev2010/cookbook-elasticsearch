@@ -156,3 +156,12 @@ template "logging.yml" do
 
   notifies :restart, 'service[elasticsearch142]' unless node.elasticsearch142[:skip_restart]
 end
+
+#============= MONIT ==================
+
+include_recipe "droid-monit"
+
+monitrc "droid-elasticsearch142" do
+  template_cookbook "droid-monit"
+  template_source   "droid-elasticsearch142.conf.erb"
+end
