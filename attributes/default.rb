@@ -83,10 +83,11 @@ default.elasticsearch142[:action][:auto_create_index] = true
 default.elasticsearch142[:action][:disable_delete_all_indices] = true
 default.elasticsearch142[:node][:max_local_storage_nodes] = 1
 
-default.elasticsearch142[:discovery][:zen][:ping][:multicast][:enabled] = false # Default: true, false if two elastic in one server
+# Default: true, False if two elastic in one server
+default.elasticsearch142[:discovery][:zen][:ping][:multicast][:enabled] = false
 default.elasticsearch142[:discovery][:zen][:minimum_master_nodes] = 1
 
-# discovery.zen.ping.multicast.port: 54329
+default.elasticsearch142[:discovery][:zen][:ping][:multicast][:port] = 54329
 
 default.elasticsearch142[:gateway][:type] = 'local'
 default.elasticsearch142[:gateway][:expected_nodes] = 1
