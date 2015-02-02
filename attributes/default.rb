@@ -55,7 +55,7 @@ default.elasticsearch142[:templates][:logging_yml]       = "logging.yml.erb"
 # allocated_memory = "#{(node.memory.total.to_i * 0.6 ).floor / 1024}m"
 # default.elasticsearch142[:allocated_memory] = allocated_memory
 
-default.elasticsearch142[:allocated_memory] = "600m"
+default.elasticsearch142[:allocated_memory] = "300m"
 
 # === GARBAGE COLLECTION SETTINGS
 #
