@@ -35,7 +35,7 @@ default.elasticsearch142[:user]      = "elasticsearch142"
 default.elasticsearch142[:uid]       = nil
 default.elasticsearch142[:gid]       = nil
 
-def/elasticsearch142ault.elasticsearch142[:path][:conf] = "/opt/elasticsearch142"
+default.elasticsearch142[:path][:conf] = "/opt/elasticsearch142"
 default.elasticsearch142[:path][:data] = "/var/data/elasticsearch142"
 default.elasticsearch142[:path][:logs] = "/var/log/elasticsearch142"
 
